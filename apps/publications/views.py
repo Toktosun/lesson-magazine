@@ -15,10 +15,17 @@ class PublicationListView(generic.ListView):
     def get_queryset(self):
         query_params = self.request.GET  # тип словарь
         search_word = query_params.get('search_word')
+        category_id = query_params.get('category_pk')
+        publication_qs = Publication.objects.all()
         if search_word:
-            publication_qs = Publication.objects.filter(title__contains=search_word)
-        else:
-            publication_qs = Publication.objects.all()
+            publication_qs = publication_qs.filter(title__contains=search_word)
+        if category_id:
+            try:
+                category_id = int(category_id)
+            except ValueError:
+                pass
+            else:  # элсе выполнится только тогда если трай выполнился успешно
+                publication_qs = publication_qs.filter(category_id=category_id)
         return publication_qs
 
     def get_context_data(self, *, object_list=None, **kwargs):
