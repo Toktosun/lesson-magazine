@@ -5,8 +5,6 @@ from django.views import generic
 from apps.publications.models import Publication, PublicationCategory
 
 
-# localhost:8000/publications/
-# localhost:8000/publications/?search_word=ноутбук
 class PublicationListView(generic.ListView):
     """Показ всех публикаций"""
     template_name = 'index.html'

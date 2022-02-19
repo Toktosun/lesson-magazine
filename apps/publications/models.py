@@ -23,7 +23,7 @@ class Publication(models.Model):
     title = models.CharField(max_length=150, verbose_name='Заголовок')
     description = models.TextField(verbose_name='Описание')
     poster = models.ImageField(upload_to='publication_images', verbose_name='Постер')
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(null=True)
 
     class Meta:
         verbose_name_plural = 'Публикации'
