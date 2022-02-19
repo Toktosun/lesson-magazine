@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <input style="background-color: yellow; color: black"
+               type="submit" value="ОТПРАВИТЬ">
+    </form>
+{% endblock %}

@@ -17,7 +17,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from apps.publications.views import PublicationListView, PublicationDetailView
+from apps.publications.views import PublicationListView, PublicationDetailView, \
+    accept_show_user_mail_form_view
 from django.conf import settings
 
 
@@ -27,6 +28,7 @@ urlpatterns = [
          name='publication-list-url'),
     path('publication-list/<int:pub_pk>/', PublicationDetailView.as_view(),
          name='publication-detail-url'),
+    path('user-email/', accept_show_user_mail_form_view),
 ]
 
 if settings.DEBUG:

@@ -1,7 +1,8 @@
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.views import generic
 
+from apps.publications.forms import UserMailForm
 from apps.publications.models import Publication, PublicationCategory
 
 
@@ -60,3 +61,17 @@ class PublicationDetailView(generic.DetailView):
 #         except Publication.DoesNotExist:
 #             raise Http404
 #         return context
+# CBV - class based view
+# FBV - function based view
+
+
+def accept_show_user_mail_form_view(request):
+    if request.method == 'GET':
+        user_form = UserMailForm()
+        response = render(request, 'user-email.html',
+                          context={'form': user_form})
+        return response
+    elif request.method == 'POST':
+        print(request.POST)
+        return HttpResponse('<h1> Вы подписались на рассылку</h1>',
+                            status=201)
