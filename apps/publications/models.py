@@ -22,7 +22,8 @@ class Publication(models.Model):
                                  related_name='publication_set')
     title = models.CharField(max_length=150, verbose_name='Заголовок')
     description = models.TextField(verbose_name='Описание')
-    poster = models.ImageField(upload_to='publication_images', verbose_name='Постер')
+    poster = models.ImageField(upload_to='publication_images', verbose_name='Постер',
+                               null=True)
     created_at = models.DateTimeField(null=True)
 
     class Meta:
